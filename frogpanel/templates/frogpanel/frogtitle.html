@@ -1,0 +1,37 @@
+
+  <a class='' style="color: white; margin-left:26px;"  onclick='pingbackend(this)' href='{% url 'djdt:open_template' %}?template={{ template_name }}'>{{ template_name }}</a>
+  <a class='' style="color: white; margin-left:26px;word-wrap: break-word" onclick='pingbackend(this)' href='{% url 'djdt:open_view' %}'>{{ view_name }}</a>
+
+<div>
+
+
+
+
+<script>
+
+  function ajax(url) {
+    var init = { credentials: "same-origin" };
+    return fetch(url, init)
+        .then(function (response) {
+            if (response.ok) {
+                return response.json();
+            }
+            return Promise.reject(
+                new Error(response.status + ": " + response.statusText)
+            );
+        })
+        .catch(function (error) {
+            const win = document.getElementById("djDebugWindow");
+            win.innerHTML =
+                '<div class="djDebugPanelTitle"><button type="button" class="djDebugClose">»</button><h3>' +
+                error.message +
+                "</h3></div>";
+             console.log(win,22)
+            throw error;
+        });
+}
+function pingbackend(el) {
+  ajax(el.href)
+  return false;
+}
+</script>
