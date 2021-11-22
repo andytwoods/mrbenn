@@ -2,7 +2,8 @@
 
 <p align="center">
     <a href="https://mrbenn.readthedocs.io/en/latest/">Docs</a> |
-    <a href="">Contribute</a>
+    <a href="">Install</a> |
+    <a href="">Contribute</a> 
 </p>
 
 The MrBenn Toolbar Plugin is an addon for the Django Debug Toolbar which allows you to quickly
