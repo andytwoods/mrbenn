@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+recursive-include mrbenn_panel/templates *
+recursive-include docs *

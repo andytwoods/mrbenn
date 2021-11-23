@@ -4,8 +4,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.test.client import RequestFactory
 
-from frogpanel import views
-from frogpanel.views import _retrieve_view_name, _retrieve_template_name
+from mrbenn_panel import views
+from mrbenn_panel.views import _retrieve_view_name, _retrieve_template_name
 
 
 class TestLoadInIDE(TestCase):

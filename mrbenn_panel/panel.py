@@ -9,10 +9,10 @@ from django.urls import path, resolve
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-from frogpanel import views
+from mrbenn_panel import views
 
 
-class FrogPanel(TemplatesPanel):
+class MrBennPanel(TemplatesPanel):
     """
     A panel that lists all templates used during processing of a response.
     """
@@ -34,14 +34,14 @@ class FrogPanel(TemplatesPanel):
         func, args, kwargs = match
         view_name = get_name_from_obj(func)
 
-        template = loader.get_template('frogpanel/frogtitle.html')
+        template = loader.get_template('mrbenn_panel/mrbenn_title.html')
         context = {
             'template_name': self.templates[0]["template"].name if self.templates else '',
             'view_name': view_name,
         }
         return mark_safe(template.render(context=context))
 
-    template = "frogpanel/frogpanel.html"
+    template = "mrbenn_panel/mrbenn_panel.html"
 
     @classmethod
     def get_urls(cls):
