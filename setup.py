@@ -12,5 +12,5 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/andytwoods/mrbenn",
     author="Andy Woods",
-    author_email="",
+    author_email="andytwoods@gmail.com",
 )
