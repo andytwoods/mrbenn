@@ -1,0 +1,4 @@
+[project]
+name = "MrBenn Toolbar Plugin"
+authors = [{name = "Andy Woods", email = "andywoods@gmail.com"}]
+dynamic = ["version", "description"]
