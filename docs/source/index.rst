@@ -1,5 +1,5 @@
 MrBenn Toolbar Plugin Docs
-====
+============================
 
 The MrBenn Toolbar Plugin is an addon for the Django Debug Toolbar which allows you to quickly open static files and
 views in your IDE.
@@ -9,7 +9,7 @@ views in your IDE.
   :alt: Logo
 
 Limitations and next steps
------
+------------------------------
 
 Do not use this package in production. Do not use Django-Debug-Toolbar in production either! In this package, template
 file-system location information is sent to the backend via a url-parameter. As it stands, any files on your file system
@@ -20,7 +20,7 @@ Django-debug-toolbar cleverly uses keys instead of raw file system information (
 . This would also be good next step for this package to implement.
 
 What's with the name?
------
+-------------------------
 
 Mr Benn was a kids UK TV show from the 70s (https://en.wikipedia.org/wiki/Mr_Benn). The main character, Mr
 Benn, on each episode walked through a magical door which took him on different adventures. Perhaps I was thinking that
@@ -28,7 +28,7 @@ this package in a similar fashion performs a little IDE magic, transporting you 
 the link to your current view or template. #ModernKidsTVshowsSuck #CBEEBIESthoughRocks
 
 Documentation
------
+---------------
 
 .. toctree::
    :maxdepth: 2
