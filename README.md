@@ -9,9 +9,9 @@ Saving you 10 seconds, 100 times a day.
 </p>
 
 <p align="center">
-    <a href="https://mrbenn.readthedocs.io/en/latest/">Docs</a> |
-    <a href="">Install</a> |
-    <a href="">Contribute</a> 
+    <a href="https://mrbenn.readthedocs.io/en/latest/index.html">Docs</a> |
+    <a href="https://pypi.org/project/mrbenn-toolbar-plugin/">Install</a> |
+    <a href="https://github.com/andytwoods/mrbenn/projects/1">Contribute</a> 
 </p>
 
 The MrBenn Toolbar Plugin is an addon for the Django Debug Toolbar which allows you to quickly open static files and
