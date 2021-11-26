@@ -6,7 +6,7 @@ copyright = "{}, Andy Woods and contributors"
 copyright = copyright.format(datetime.date.today().year)
 author = "Andy Woods and contributors"
 
-release = "0.0.1"
+version = "0.0.1"
 
 html_theme = "default"
 
