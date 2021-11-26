@@ -10,6 +10,8 @@ version = "0.0.1"
 
 html_theme = "default"
 
+master_doc = 'index'
+
 extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
