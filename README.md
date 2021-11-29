@@ -1,7 +1,7 @@
 # MrBenn Toolbar Plugin
 
 <p align="center">
-    <img alt="MrBenn explainer animation" src="https://github.com/andytwoods/mrbenn/blob/main/.github/images/mrbenn.gif?raw=true">
+    <img alt="MrBenn explainer animation" src="https://github.com/andytwoods/mrbenn/blob/main/.github/images/panel.jpg?raw=true">
 </p>
 
 <p align="center">
