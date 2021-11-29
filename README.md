@@ -14,7 +14,7 @@ Saving you 10 seconds, 100 times a day.
     <a href="https://github.com/andytwoods/mrbenn/projects/1">Contribute</a> 
 </p>
 
-The MrBenn Toolbar Plugin is an addon for the Django Debug Toolbar which allows you to quickly open static files and
+The MrBenn Toolbar Plugin is an addon for the Django Debug Toolbar which allows you to quickly open template files and
 views in your IDE.
 
 <p align="center">
