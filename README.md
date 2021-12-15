@@ -1,7 +1,7 @@
 # MrBenn Toolbar Plugin
 
 <p align="center">
-    <img alt="MrBenn explainer animation" src="https://github.com/andytwoods/mrbenn/blob/main/.github/images/panel.jpg?raw=true">
+    <img alt="MrBenn explainer animation" src="https://github.com/andytwoods/mrbenn/blob/main/.github/images/mrbenn.gif?raw=true">
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@ The MrBenn Toolbar Plugin is an addon for the Django Debug Toolbar which allows 
 views in your IDE.
 
 <p align="center">
-    <img alt="MrBenn demo" src="https://user-images.githubusercontent.com/36422452/142882309-3885b572-45ed-4b98-876a-f25abb68192a.png">
+<img alt="MrBenn demo" src="https://github.com/andytwoods/mrbenn/blob/main/.github/images/panel.jpg?raw=true">
 </p>
 
 ## Installation
