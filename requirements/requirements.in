@@ -1,0 +1,5 @@
+django
+pytest
+pytest-django
+pytest-randomly
+django-debug-toolbar

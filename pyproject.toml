@@ -1,4 +1,8 @@
 [project]
 name = "MrBenn Toolbar Plugin"
-authors = [{name = "Andy Woods", email = "andywoods@gmail.com"}]
+authors = [{name = "Andy Woods", email = "andytwoods@gmail.com"}]
 dynamic = ["version", "description"]
+
+[build-system]
+requires = ["setuptools >= 40.6.0", "wheel"]
+build-backend = "setuptools.build_meta"

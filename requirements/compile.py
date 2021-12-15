@@ -22,6 +22,7 @@ def update_piptools():
 
 if __name__ == "__main__":
     update_piptools()
+    print('Generating requirement files can take a minute...')
     os.chdir(Path(__file__).parent)
     os.environ["CUSTOM_COMPILE_COMMAND"] = "requirements/compile.py"
     # os.environ.pop("PIP_REQUIRE_VIRTUALENV")

@@ -23,11 +23,12 @@ DATABASES = {
 ALLOWED_HOSTS: List[str] = []
 
 INSTALLED_APPS = [
-    "django_read_only",
     "django.contrib.sites",
+    "debug_toolbar",
+    "mrbenn_panel",
 ]
 
-MIDDLEWARE: List[str] = []
+MIDDLEWARE: List[str] = ["debug_toolbar.middleware.DebugToolbarMiddleware",]
 
 ROOT_URLCONF = "tests.urls"
 LANGUAGE_CODE = "en-us"
@@ -40,3 +41,7 @@ if django.VERSION < (4, 0):
 SITE_ID = 1
 
 USE_TZ = True
+
+DEBUG_TOOLBAR_PANELS = [
+    "mrbenn_panel.panel.MrBennPanel",
+]
