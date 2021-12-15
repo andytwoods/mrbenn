@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     "mrbenn_panel",
 ]
 
-MIDDLEWARE: List[str] = ["debug_toolbar.middleware.DebugToolbarMiddleware",]
+MIDDLEWARE: List[str] = ["debug_toolbar.middleware.DebugToolbarMiddleware", ]
 
 ROOT_URLCONF = "tests.urls"
 LANGUAGE_CODE = "en-us"
@@ -44,4 +44,12 @@ USE_TZ = True
 
 DEBUG_TOOLBAR_PANELS = [
     "mrbenn_panel.panel.MrBennPanel",
+]
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR + '/tests/templates'],
+        'APP_DIRS': True,
+    },
 ]
