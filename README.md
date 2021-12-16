@@ -14,6 +14,13 @@ Saving you 10 seconds, 100 times a day.
     <a href="https://github.com/andytwoods/mrbenn/projects/1">Contribute</a> 
 </p>
 
+<p align="center">
+    <img src="https://github.com/andytwoods/mrbenn/actions/workflows/django.yml/badge.svg" alt="tests" />
+    <a href="https://github.com/andytwoods/mrbenn/blob/main/LICENSE"><img src="https://img.shields.io/github/license/andytwoods/mrbenn" alt="license" /></a>
+    <a href="https://pypi.org/project/mrbenn-toolbar-plugin/"><img src="https://img.shields.io/pypi/dm/mrbenn-toolbar-plugin" alt="downloads" /></a>
+    <a href="https://mrbenn.readthedocs.io/en/latest/index.html"><img src="https://img.shields.io/readthedocs/mrbenn/latest.svg" alt="docs" /></a>
+</p>
+
 The MrBenn Toolbar Plugin is an addon for the Django Debug Toolbar which allows you to quickly open template files and
 views in your IDE.
 
