@@ -72,7 +72,7 @@ On top of Django, MrBenn requires the Django Debug Toolbar package found
 ## How to contribute?
 
 All contributions are appreciated! To contribute, simply create a new branch with your contribution and raise a PR! You
-can ping @andywoods should any issues arize!
+can ping @andytwoods should any issues arise!
 
 Should you get stuck on something, we also have a contributing section in our wiki! LINK TBD
 
