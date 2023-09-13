@@ -1,5 +1,5 @@
 [project]
-name = "MrBenn Toolbar Plugin"
+name = "mrbenn-toolbar-plugin"
 authors = [{name = "Andy Woods", email = "andytwoods@gmail.com"}]
 dynamic = ["version", "description"]
 
