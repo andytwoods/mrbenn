@@ -1,12 +1,12 @@
 # -- Project information -----------------------------------------------------
 import datetime
 
-project = "MrBenn Toolbar Plugin"
+project = "mrbenn-toolbar-plugin"
 copyright = "{}, Andy Woods and contributors"
 copyright = copyright.format(datetime.date.today().year)
 author = "Andy Woods and contributors"
 
-version = "0.0.1"
+version = "0.0.2"
 
 html_theme = "default"
 
