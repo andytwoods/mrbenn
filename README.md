@@ -32,7 +32,7 @@ After the package has been installed, head over to your settings.py. You need to
 - In ``INSTALLED_APPS`` add ``mrbenn_panel``
 - Under ``DEBUG_TOOLBARS`` add ``mrbenn_panel.panel.MrBennPanel``. We recommend you remove
   `debug_toolbar.panels.staticfiles.StaticFilesPanel`.
-- Fnally, in settings, you need to add the location of the IDE you would like to use to open files with an
+- Finally, in settings, you need to add the location of the IDE you would like to use to open files with an
   option called ``DJANGO_WINDOWS_IDE``. Be careful with the type of slash you use. For example, the setting for the PyCharm Interpreter would
   be `DJANGO_WINDOWS_IDE="C:/Program Files/JetBrains/PyCharm 2023.1.1/bin/pycharm64.exe"`.
 
