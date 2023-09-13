@@ -41,9 +41,9 @@ After the package has been installed, head over to your settings.py. You need to
   `debug_toolbar.panels.staticfiles.StaticFilesPanel`.
 
 
-- **WINDOWS USERS**: in your `env` file, you need to add the location of the IDE you would like to use to open files with an
-  option called ``DJANGO_WINDOWS_IDE``. For example, the setting for the PyCharm Interpreter would
-  be `DJANGO_WINDOWS_IDE=C:\Program Files\JetBrains\PyCharm 2021.1.3\bin\pycharm64.exe`.
+- you need to add the location of the IDE you would like to use to open files with an
+  option called ``DJANGO_WINDOWS_IDE`` in your settings. For example, the setting for the PyCharm Interpreter would
+  be `DJANGO_WINDOWS_IDE="C:/Program Files/JetBrains/PyCharm 2023.1.1/bin/pycharm64.exe`.
 
 
 - **MAC USERS**: you will need to tell your operating system to use your IDE to open python and html files by default. 
