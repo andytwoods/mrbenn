@@ -22,7 +22,7 @@ def open_template(request):
 def _extract_func(request):
     host = request.get_host()
     referrer = request.META['HTTP_REFERER']
-    url_ending = referrer.split(host)[1]
+    url_ending = referrer.split(host)[1].split('?')[0]
     match = resolve(url_ending)
     func, _, _ = match
     return func
