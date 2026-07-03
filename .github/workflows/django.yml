@@ -8,30 +8,37 @@ on:
 
 jobs:
   tests:
-    name: Python ${{ matrix.python-version }}
-    runs-on: ubuntu-20.04
+    name: Python ${{ matrix.python-version }} / Django ${{ matrix.django-version }}
+    runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        python-version:
-        - 3.6
-        - 3.7
-        - 3.8
-        - 3.9
-        - '3.10'
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
+        django-version: ['4.2', '5.2']
+        exclude:
+          # Django 5.2 requires Python >= 3.10
+          - python-version: '3.9'
+            django-version: '5.2'
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: pip
-        cache-dependency-path: 'requirements/*.txt'
+        cache-dependency-path: pyproject.toml
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip setuptools wheel
-        python -m pip install --upgrade tox tox-py
-    - name: Run tox targets for ${{ matrix.python-version }}
-      run: tox --py current
+        python -m pip install --upgrade pip
+        # Pin Django to the matrix version; let pip resolve the newest
+        # django-debug-toolbar compatible with this interpreter (DDT 5.x on
+        # 3.9, DDT 7.x on 3.10+), exercising both sides of the toolbar's
+        # serialization refactor.
+        python -m pip install "Django~=${{ matrix.django-version }}.0" django-debug-toolbar pytest pytest-django
+        python -m pip install -e .
+
+    - name: Run tests
+      run: python -m pytest tests
