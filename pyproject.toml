@@ -1,8 +1,48 @@
+[build-system]
+requires = ["setuptools >= 61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "mrbenn-toolbar-plugin"
+version = "0.0.2"
+description = "An addon for Django Debug Toolbar that allows for directly opening templates and views in your IDE"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {file = "LICENSE"}
 authors = [{name = "Andy Woods", email = "andytwoods@gmail.com"}]
-dynamic = ["version", "description"]
+maintainers = [{name = "Andy Woods", email = "andytwoods@gmail.com"}]
+keywords = ["django", "debug-toolbar", "ide", "development"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+dependencies = [
+    "Django >= 2.2",
+    "django-debug-toolbar >= 3.2.1",
+]
 
-[build-system]
-requires = ["setuptools >= 40.6.0", "wheel"]
-build-backend = "setuptools.build_meta"
+[project.urls]
+Homepage = "https://github.com/andytwoods/mrbenn"
+Documentation = "https://mrbenn.readthedocs.io/en/latest/index.html"
+Source = "https://github.com/andytwoods/mrbenn"
+Changelog = "https://github.com/andytwoods/mrbenn/releases"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["mrbenn_panel*"]
