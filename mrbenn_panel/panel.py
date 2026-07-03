@@ -27,17 +27,18 @@ class MrBennPanel(TemplatesPanel):
     @property
     def nav_subtitle(self):
         """
-        Show abbreviated name of view function as subtitle
+        Show abbreviated name of view function as subtitle.
+
+        Reads from the stats recorded in ``generate_stats`` rather than from
+        the live request/templates so the subtitle renders correctly when the
+        toolbar is persisted and replayed (e.g. via the History panel). See
+        https://github.com/django-commons/django-debug-toolbar/pull/2138
         """
-
-        match = resolve(self.toolbar.request.path)
-        func, args, kwargs = match
-        view_name = get_name_from_obj(func)
-
+        stats = self.get_stats()
         template = loader.get_template('mrbenn_panel/mrbenn_title.html')
         context = {
-            'template_name': self.templates[0]["template"].name if self.templates else '',
-            'view_name': view_name,
+            'template_name': stats.get('mrbenn_template_name', ''),
+            'view_name': stats.get('mrbenn_view_name', ''),
         }
         return mark_safe(template.render(context=context))
 
@@ -51,5 +52,17 @@ class MrBennPanel(TemplatesPanel):
         ]
 
     def generate_stats(self, request, response):
-        pass
+        # Store plain, serializable strings for the nav subtitle so it survives
+        # persistence and replay (e.g. the History panel), instead of reading
+        # live request/template state at render time.
+        try:
+            match = resolve(request.path)
+            view_name = get_name_from_obj(match.func)
+        except Exception:
+            view_name = ''
+
+        self.record_stats({
+            'mrbenn_view_name': view_name,
+            'mrbenn_template_name': self.templates[0]["template"].name if self.templates else '',
+        })
 
