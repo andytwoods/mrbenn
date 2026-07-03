@@ -1,0 +1,67 @@
+name: Publish to PyPI
+
+# Builds the package and uploads it to PyPI whenever a GitHub Release is
+# published. To cut a release:
+#   1. Bump `version` in pyproject.toml and commit it.
+#   2. Create a GitHub Release whose tag is that version (e.g. "0.0.3").
+# The tag and the pyproject.toml version must match or the job fails, so a
+# stale version can never be uploaded twice.
+#
+# Authentication uses PyPI Trusted Publishing (OIDC) -- no API token secret is
+# needed. One-time setup on PyPI: project -> Settings -> Publishing -> add a
+# GitHub trusted publisher with:
+#   Owner: andytwoods   Repository: mrbenn   Workflow: publish.yml
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install build tooling
+        run: python -m pip install --upgrade build twine
+
+      - name: Verify tag matches package version
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VERSION="$(python -c 'import tomllib,pathlib; print(tomllib.loads(pathlib.Path("pyproject.toml").read_text())["project"]["version"])')"
+          echo "Release tag: $TAG  |  pyproject version: $VERSION"
+          if [ "$TAG" != "$VERSION" ]; then
+            echo "::error::Release tag ($TAG) does not match pyproject.toml version ($VERSION)."
+            exit 1
+          fi
+
+      - name: Build sdist and wheel
+        run: python -m build
+
+      - name: Check distributions
+        run: python -m twine check dist/*
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # required for Trusted Publishing
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@release/v1
