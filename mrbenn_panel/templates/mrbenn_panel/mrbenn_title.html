@@ -1,37 +1,47 @@
 
-  <a class='' style="color: white; margin-left:26px;"  onclick='pingbackend(this)' href='{% url 'djdt:open_template' %}?template={{ template_name }}'>{{ template_name }}</a>
-  <a class='' style="color: white; margin-left:26px;word-wrap: break-word" onclick='pingbackend(this)' href='{% url 'djdt:open_view' %}'>{{ view_name }}</a>
+  <a href="#" style="color: white; margin-left:26px;"
+     data-mrbenn-url="{% url 'djdt:open_template' %}"
+     data-mrbenn-template="{{ template_name }}"
+     onclick="mrbennOpen(this); return false;">{{ template_name }}</a>
+  <a href="#" style="color: white; margin-left:26px; word-wrap: break-word"
+     data-mrbenn-url="{% url 'djdt:open_view' %}"
+     data-mrbenn-path="{{ view_path }}"
+     onclick="mrbennOpen(this); return false;">{{ view_name }}</a>
 
 <div>
 
 
-
-
 <script>
+  var MRBENN_CSRF = "{{ csrf_token }}";
 
-  function ajax(url) {
-    var init = { credentials: "same-origin" };
-    return fetch(url, init)
-        .then(function (response) {
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(
-                new Error(response.status + ": " + response.statusText)
-            );
-        })
-        .catch(function (error) {
-            const win = document.getElementById("djDebugWindow");
-            win.innerHTML =
-                '<div class="djDebugPanelTitle"><button type="button" class="djDebugClose">»</button><h3>' +
-                error.message +
-                "</h3></div>";
-             console.log(win,22)
-            throw error;
-        });
-}
-function pingbackend(el) {
-  ajax(el.href)
-  return false;
-}
+  function mrbennOpen(el) {
+    var body = new URLSearchParams();
+    if (el.dataset.mrbennTemplate) { body.set("template", el.dataset.mrbennTemplate); }
+    if (el.dataset.mrbennPath) { body.set("path", el.dataset.mrbennPath); }
+
+    fetch(el.dataset.mrbennUrl, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "X-CSRFToken": MRBENN_CSRF,
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: body.toString()
+    })
+      .then(function (response) {
+        if (response.ok) { return response.json(); }
+        return Promise.reject(new Error(response.status + ": " + response.statusText));
+      })
+      .catch(function (error) {
+        var win = document.getElementById("djDebugWindow");
+        if (win) {
+          win.innerHTML =
+            '<div class="djDebugPanelTitle"><button type="button" class="djDebugClose">»</button><h3>' +
+            error.message +
+            "</h3></div>";
+        }
+        throw error;
+      });
+    return false;
+  }
 </script>

@@ -55,14 +55,15 @@ This [guide](https://www.mobigyaan.com/how-to-set-or-change-default-apps-on-mac-
 
 ## Limitations and next steps
 
-Do not use this package in production. Do not use Django-Debug-Toolbar in production either! In this package, Template
-file-system location information is sent to the backend via a url-parameter. As it stands, any files on your file system
-could be opened by manipulating this parameter. An easy pull-request would be to check that a file to be opened exists
-within the current project, before opening it.
+Do not use this package in production. Do not use Django-Debug-Toolbar in production either!
 
-Django-debug-toolbar cleverly uses keys instead of raw file system information (
-see [here](https://github.com/jazzband/django-debug-toolbar/blob/5665d6808ce0780d2594157684dd6869d1e048a5/debug_toolbar/panels/templates/views.py#L19))
-. This would also be good next step for this package to implement.
+This package opens files on the machine running the dev server, driven by HTTP requests, so its endpoints are guarded:
+
+- they only respond when the Django Debug Toolbar would be shown (same `SHOW_TOOLBAR_CALLBACK` / `INTERNAL_IPS` / `DEBUG` gate);
+- they are `POST`-only and CSRF-protected, so another site open in your browser cannot trigger them;
+- the file to open is resolved server-side (templates via Django's loaders, views via the URLconf), never taken as a raw path, and its existence is checked before the OS is asked to open it. Django's template loaders reject `..` and absolute paths.
+
+Keep in mind this is still a development-only convenience: run your dev server on `localhost`, not on a shared/public interface.
 
 ## Requirements
 
