@@ -1,10 +1,7 @@
-from debug_toolbar.panels import Panel
-# Code taken and adapted from Simon Willison and Django Snippets:
-# https://www.djangosnippets.org/snippets/766/
 from debug_toolbar.panels.templates import TemplatesPanel
 from debug_toolbar.utils import get_name_from_obj
+from django.middleware.csrf import get_token
 from django.template import loader
-from django.test.signals import template_rendered
 from django.urls import path, resolve
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
@@ -39,6 +36,10 @@ class MrBennPanel(TemplatesPanel):
         context = {
             'template_name': stats.get('mrbenn_template_name', ''),
             'view_name': stats.get('mrbenn_view_name', ''),
+            'view_path': stats.get('mrbenn_view_path', ''),
+            # The open endpoints are CSRF-protected POSTs; hand the token to the
+            # client so the legitimate toolbar can call them.
+            'csrf_token': get_token(self.toolbar.request),
         }
         return mark_safe(template.render(context=context))
 
@@ -63,6 +64,9 @@ class MrBennPanel(TemplatesPanel):
 
         self.record_stats({
             'mrbenn_view_name': view_name,
+            # The request path is resolved server-side by open_view; storing it
+            # avoids trusting the Referer header at open time.
+            'mrbenn_view_path': request.path,
             'mrbenn_template_name': self.templates[0]["template"].name if self.templates else '',
         })
 
